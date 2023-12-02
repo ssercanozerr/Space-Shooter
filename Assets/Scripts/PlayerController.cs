@@ -14,10 +14,23 @@ public class PlayerController : MonoBehaviour
     public Baundary baundary;
     [SerializeField] float speed;
     [SerializeField] float tilt;
+    [SerializeField] float nextFire;
+    [SerializeField] float fireRate;
+    public GameObject shot;
+    public GameObject shotSpawn;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(shot,shotSpawn.transform.position,shotSpawn.transform.rotation);
+        }
     }
 
     void FixedUpdate()
