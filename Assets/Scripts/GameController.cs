@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class GameController : MonoBehaviour
     public float startWait;
     public float spawnWait;
     public float waveWait;
+    public Text scoreTxt;
+    public static int score;
     IEnumerator AsteroidSpawner()
     {
         yield return new WaitForSeconds(startWait);
@@ -24,8 +27,15 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void UpdateScore()
+    {
+        score += 10;
+        scoreTxt.text = "Score : " + score;
+    }
+
     void Start()
     {
+        score = 0;
         StartCoroutine(AsteroidSpawner());
     }
 }

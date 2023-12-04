@@ -11,17 +11,21 @@ public class Baundary
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
-    public Baundary baundary;
+    AudioSource audioPlayer;
+    
     [SerializeField] float speed;
     [SerializeField] float tilt;
     [SerializeField] float nextFire;
     [SerializeField] float fireRate;
+    
+    public Baundary baundary;
     public GameObject shot;
     public GameObject shotSpawn;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioPlayer = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -30,6 +34,7 @@ public class PlayerController : MonoBehaviour
         {
             nextFire = Time.time + fireRate;
             Instantiate(shot,shotSpawn.transform.position,shotSpawn.transform.rotation);
+            audioPlayer.Play();
         }
     }
 
