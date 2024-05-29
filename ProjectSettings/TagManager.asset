@@ -7,8 +7,9 @@ TagManager:
   - Boundary
   - Bolt
   - PlayerShip
-  - Enemy
   - GameManager
+  - EnemyShip
+  - EnemyBolt
   layers:
   - Default
   - TransparentFX

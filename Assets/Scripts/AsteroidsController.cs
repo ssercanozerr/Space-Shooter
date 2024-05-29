@@ -10,10 +10,11 @@ public class AsteroidsController : MonoBehaviour
     public float speed;
     public GameObject explosionAsteroid;
     public GameObject explosionPlayer;
-    public GameController gameController;
+    public GameObject explosionEnemy;
+    GameController gameController;
     void Start()
     {
-        gameController = GameObject.FindWithTag("GameManager").GetComponent<GameController>();
+        gameController = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameController>();
         rb = GetComponent<Rigidbody>();
         rb.angularVelocity = Random.insideUnitSphere * rotationSpeed;
         rb.velocity = transform.forward * speed;
@@ -21,19 +22,27 @@ public class AsteroidsController : MonoBehaviour
     
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Bolt")
+        if(other.gameObject.CompareTag("Bolt"))
         {
             Instantiate(explosionAsteroid, transform.position, transform.rotation);
             Destroy(other.gameObject);
             Destroy(gameObject);
-            gameController.UpdateScore();
+            gameController.UpdateScore(10);
         }
         if(other.gameObject.tag == "PlayerShip")
         {
             Instantiate(explosionPlayer, other.transform.position, other.transform.rotation);
+            //Destroy(other.gameObject);
+            Destroy(gameObject);
+            other.gameObject.GetComponent<PlayerHealthController>().DecreaseHealth(10);
+            //SceneManager.LoadScene(2);
+        }
+        if (other.gameObject.tag == "EnemyShip")
+        {
+            Instantiate(explosionEnemy, other.transform.position, other.transform.rotation);
             Destroy(other.gameObject);
             Destroy(gameObject);
-            SceneManager.LoadScene(2);
+            gameController.UpdateScore(20);
         }
     }
 }

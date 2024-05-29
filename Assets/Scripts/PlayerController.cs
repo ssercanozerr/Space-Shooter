@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [System.Serializable]
 public class Baundary
@@ -10,19 +8,19 @@ public class Baundary
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody rb;
-    AudioSource audioPlayer;
+    public Baundary baundary;
+    public GameObject shot;
+    public GameObject shotSpawn;
     
     [SerializeField] float speed;
     [SerializeField] float tilt;
     [SerializeField] float nextFire;
     [SerializeField] float fireRate;
-    
-    public Baundary baundary;
-    public GameObject shot;
-    public GameObject shotSpawn;
 
-    void Start()
+    Rigidbody rb;
+    AudioSource audioPlayer;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
         audioPlayer = GetComponent<AudioSource>();
@@ -30,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        if (Input.GetKey(KeyCode.Space) && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             Instantiate(shot,shotSpawn.transform.position,shotSpawn.transform.rotation);
