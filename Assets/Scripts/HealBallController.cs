@@ -1,27 +1,13 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Signals;
+using UnityEngine;
 
-public class HealBallController : MonoBehaviour
+public class HealBallController : AbsPowerUp
 {
-    Rigidbody _rb;
-    [SerializeField] float _speed;
     [SerializeField] float _increaseHealthAmount;
 
-    void Awake()
+    public override void UsePowerUp()
     {
-        _rb = GetComponent<Rigidbody>();
-    }
-
-    void FixedUpdate()
-    {
-        _rb.velocity = transform.forward * _speed;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("PlayerShip"))
-        {
-            other.gameObject.GetComponent<PlayerHealthController>().IncreaseHealth(_increaseHealthAmount);
-            Destroy(gameObject);
-        }
+        PlayerSignals.Instance.onIncreasePlayerHealth?.Invoke(_increaseHealthAmount);
+        base.UsePowerUp();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Signals;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -53,10 +54,10 @@ public class EnemyController : MonoBehaviour
         if (other.gameObject.tag == "PlayerShip")
         {
             Instantiate(explosionPlayer, other.transform.position, other.transform.rotation);
-            Instantiate(explosionEnemy, other.transform.position, other.transform.rotation);
-            Destroy(other.gameObject);
+            Instantiate(explosionEnemy, transform.position, transform.rotation);
+            PlayerSignals.Instance.onDecreasePlayerHealth?.Invoke(50);
+            PlayerSignals.Instance.onResetBulletPowerUp?.Invoke();
             Destroy(gameObject);
-            SceneManager.LoadScene(2);
         }
     }
 }

@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public GameObject asteroid;
     public GameObject enemyShip;
     public GameObject healBall;
+    public GameObject bulletBall;
     public int enemyWaveTime;
     public int enemyCount;
     public int asteroidCount;
@@ -17,28 +18,37 @@ public class GameController : MonoBehaviour
     public float waveWait;
     public Text scoreTxt;
     public static int score;
-    
-    
+
+
     void Start()
     {
         score = 0;
-        StartCoroutine(AsteroidSpawner());
+        StartCoroutine(ObjectSpawner());
     }
 
-    IEnumerator AsteroidSpawner()
+    IEnumerator ObjectSpawner()
     {
         yield return new WaitForSeconds(startWait);
         bool isHealthBallSpawned = false;
+        bool isBulletBallSpawned = false;
         while (true)
         {
-            if (Random.value < 0.1f && !isHealthBallSpawned)
+            if (Random.value < 0.3f && !isHealthBallSpawned)
             {
                 isHealthBallSpawned = true;
                 Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
                 Instantiate(healBall, spawnLocation, Quaternion.identity);
-            } else
+            }
+            else if (Random.value < 0.4f && !isBulletBallSpawned)
+            {
+                isBulletBallSpawned = true;
+                Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
+                Instantiate(bulletBall, spawnLocation, Quaternion.identity);
+            }
+            else
             {
                 isHealthBallSpawned = false;
+                isBulletBallSpawned = false;
                 if (enemyWaveTime != 2)
                 {
                     for (int i = 0; i < asteroidCount; i++)
@@ -49,7 +59,7 @@ public class GameController : MonoBehaviour
                     }
                     yield return new WaitForSeconds(waveWait);
                     enemyWaveTime++;
-                } 
+                }
                 else
                 {
                     for (int i = 0; i < enemyCount; i++)

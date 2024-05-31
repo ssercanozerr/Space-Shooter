@@ -9,31 +9,17 @@ public class Baundary
 public class PlayerController : MonoBehaviour
 {
     public Baundary baundary;
-    public GameObject shot;
-    public GameObject shotSpawn;
+
     
     [SerializeField] float speed;
     [SerializeField] float tilt;
-    [SerializeField] float nextFire;
-    [SerializeField] float fireRate;
+
 
     Rigidbody rb;
-    AudioSource audioPlayer;
-
+    
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        audioPlayer = GetComponent<AudioSource>();
-    }
-
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Space) && Time.time > nextFire)
-        {
-            nextFire = Time.time + fireRate;
-            Instantiate(shot,shotSpawn.transform.position,shotSpawn.transform.rotation);
-            audioPlayer.Play();
-        }
     }
 
     void FixedUpdate()
@@ -51,5 +37,13 @@ public class PlayerController : MonoBehaviour
         rb.position = position;
 
         rb.rotation = Quaternion.Euler(0, 0, rb.velocity.x * tilt);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out AbsPowerUp powerUp))
+        {
+            powerUp.UsePowerUp();
+        }
     }
 }
