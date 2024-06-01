@@ -41,7 +41,10 @@ When we run our project, we are greeted with the interface as shown below. To st
 
 In our game, we control our spaceship, trying to destroy asteroids without colliding with them and accumulating points. Below, a frame from the game is provided.
 
-![Ekran görüntüsü 2023-12-04 033856](https://github.com/ssercanozerr/Space-Shooter/assets/83230914/847b0ea9-1bd1-4d71-8774-a10378360ff1)
+![Ekran görüntüsü 2024-05-30 232352](https://github.com/ssercanozerr/Space-Shooter/assets/83230914/d6189f36-b396-45db-884a-a7a0b0cca6d1)
+
+![Ekran görüntüsü 2024-05-30 232238](https://github.com/ssercanozerr/Space-Shooter/assets/83230914/63b7c173-a390-4df3-96c6-13e14ebfbaf8)
+
 
 ---
 
