@@ -13,6 +13,7 @@ namespace Assets.Scripts.Signals
         public UnityAction<float> onDecreasePlayerHealth;
         public UnityAction onIncreaseBulletPowerUp;
         public UnityAction onResetBulletPowerUp;
+        public Func<bool> onIsHealthBarMax;
         public Func<bool> onIsBulletLevelMax;
 
         void Awake()

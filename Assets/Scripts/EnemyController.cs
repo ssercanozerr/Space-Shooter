@@ -30,22 +30,18 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if (Time.time > nextFire)
-        {
-            nextFire = Time.time + fireRate;
-            Instantiate(shot, shotSpawnLeft.transform.position, shotSpawnLeft.transform.rotation);
-            Instantiate(shot, shotSpawnRight.transform.position, shotSpawnRight.transform.rotation);
-        }
-    }
-
-    void FixedUpdate()
-    {
         if (player)
         {
             Vector3 directionToPlayer = (player.position - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(directionToPlayer);
             transform.rotation = Quaternion.Euler(0f, lookRotation.eulerAngles.y, 0f);
             transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
+        }
+        if (Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(shot, shotSpawnLeft.transform.position, shotSpawnLeft.transform.rotation);
+            Instantiate(shot, shotSpawnRight.transform.position, shotSpawnRight.transform.rotation);
         }
     }
 

@@ -32,6 +32,11 @@ public class PlayerHealthController : MonoBehaviour
         AdjustHealth(heal);
     }
 
+    public bool OnHealthBarMax()
+    {
+        return _healthBarImage.fillAmount == 1;
+    }
+    
     private void AdjustHealth(float amount)
     {
         _health += amount;

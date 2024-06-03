@@ -34,13 +34,13 @@ public class GameController : MonoBehaviour
         bool isBulletBallSpawned = false;
         while (true)
         {
-            if (Random.value < 0.3f && !isHealthBallSpawned)
+            if (Random.value < 0.3f && !isHealthBallSpawned && !(bool)PlayerSignals.Instance.onIsHealthBarMax?.Invoke())
             {
                 isHealthBallSpawned = true;
                 Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
                 Instantiate(healBall, spawnLocation, Quaternion.identity);
             }
-            else if (Random.value < 0.4f && !isBulletBallSpawned && !(bool)PlayerSignals.Instance.onIsBulletLevelMax?.Invoke())
+            else if (Random.value < 1f && !isBulletBallSpawned && !(bool)PlayerSignals.Instance.onIsBulletLevelMax?.Invoke() && score >= 200)
             {
                 isBulletBallSpawned = true;
                 Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
