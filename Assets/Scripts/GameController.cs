@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Signals;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +40,7 @@ public class GameController : MonoBehaviour
                 Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
                 Instantiate(healBall, spawnLocation, Quaternion.identity);
             }
-            else if (Random.value < 0.4f && !isBulletBallSpawned)
+            else if (Random.value < 0.4f && !isBulletBallSpawned && !(bool)PlayerSignals.Instance.onIsBulletLevelMax?.Invoke())
             {
                 isBulletBallSpawned = true;
                 Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);

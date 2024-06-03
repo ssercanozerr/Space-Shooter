@@ -15,6 +15,7 @@ namespace Assets.Scripts.Managers
             PlayerSignals.Instance.onDecreasePlayerHealth += _playerHealthController.DecreaseHealth;
             PlayerSignals.Instance.onIncreaseBulletPowerUp += _playerFireController.OnIncreasePowerUpLevel;
             PlayerSignals.Instance.onResetBulletPowerUp += _playerFireController.OnResetPowerUpLevel;
+            PlayerSignals.Instance.onIsBulletLevelMax += _playerFireController.OnGetIsPowerUpLevelMax;
         }
         void OnDisable()
         {
@@ -22,6 +23,7 @@ namespace Assets.Scripts.Managers
             PlayerSignals.Instance.onDecreasePlayerHealth -= _playerHealthController.DecreaseHealth;
             PlayerSignals.Instance.onIncreaseBulletPowerUp -= _playerFireController.OnIncreasePowerUpLevel;
             PlayerSignals.Instance.onResetBulletPowerUp -= _playerFireController.OnResetPowerUpLevel;
+            PlayerSignals.Instance.onIsBulletLevelMax -= _playerFireController.OnGetIsPowerUpLevelMax;
         }
     }
 }

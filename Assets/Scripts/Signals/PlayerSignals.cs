@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,7 @@ namespace Assets.Scripts.Signals
         public UnityAction<float> onDecreasePlayerHealth;
         public UnityAction onIncreaseBulletPowerUp;
         public UnityAction onResetBulletPowerUp;
+        public Func<bool> onIsBulletLevelMax;
 
         void Awake()
         {

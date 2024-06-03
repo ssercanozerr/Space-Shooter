@@ -1228,7 +1228,7 @@ MonoBehaviour:
   shot: {fileID: 8989485872013567200, guid: 0605eb33577578841ade145d48a0e497, type: 3}
   shotSpawn: {fileID: 1929601974}
   nextFire: 0
-  fireRate: 0.25
+  fireRate: 0.35
   tripleBulletAngel: 8
 --- !u!114 &1414886623
 MonoBehaviour:

@@ -11,6 +11,7 @@ namespace Assets.Scripts.Controllers
         [SerializeField] float fireRate;
         [SerializeField] float tripleBulletAngel;
 
+        float fireRateBackUp;
         Vector3 firePosition;
         Vector3 fireRotation;
         AudioSource audioPlayer;
@@ -19,6 +20,7 @@ namespace Assets.Scripts.Controllers
         void Awake()
         {
             audioPlayer = GetComponent<AudioSource>();
+            fireRateBackUp = fireRate;
         }
 
         void Update()
@@ -57,11 +59,30 @@ namespace Assets.Scripts.Controllers
         {
             _powerUpLevel++;
             _powerUpLevel = Mathf.Clamp(_powerUpLevel, 1, 3);
+            if (_powerUpLevel == 2)
+            {
+                fireRate -= 0.1f; 
+            }
+            else
+            {
+                ResetFireRate();
+            }
         }
 
         public void OnResetPowerUpLevel()
         {
-            _powerUpLevel= 1;
+            _powerUpLevel = 1;
+            ResetFireRate();
         }
+
+        public bool OnGetIsPowerUpLevelMax()
+        {
+            return _powerUpLevel == 3;
+        }
+
+        private void ResetFireRate()
+        {
+            fireRate = fireRateBackUp;
+        }       
     }
 }
