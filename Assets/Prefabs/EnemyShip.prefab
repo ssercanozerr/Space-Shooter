@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextFire: 0
-  fireRate: 1.25
+  fireRate: 0.75
   moveSpeed: 1.5
   shot: {fileID: 3525131308151336192, guid: e66e7e3b7eff1384ab558d2d932ddcdb, type: 3}
   shotSpawnLeft: {fileID: 6656145964036015625}

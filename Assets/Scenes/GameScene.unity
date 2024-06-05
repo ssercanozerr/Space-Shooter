@@ -237,7 +237,7 @@ MonoBehaviour:
   asteroidCount: 15
   startWait: 3
   spawnWaitAsteroid: 0.3
-  spawnWaitEnemy: 3
+  spawnWaitEnemy: 2
   waveWait: 3
   scoreTxt: {fileID: 1501539027}
 --- !u!4 &262013996

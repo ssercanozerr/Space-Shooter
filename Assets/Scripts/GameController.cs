@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
                 Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
                 Instantiate(healBall, spawnLocation, Quaternion.identity);
             }
-            else if (Random.value < 1f && !isBulletBallSpawned && !(bool)PlayerSignals.Instance.onIsBulletLevelMax?.Invoke() && score >= 200)
+            else if (Random.value < 0.4f && !isBulletBallSpawned && !(bool)PlayerSignals.Instance.onIsBulletLevelMax?.Invoke() && score >= 200)
             {
                 isBulletBallSpawned = true;
                 Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
@@ -60,6 +60,7 @@ public class GameController : MonoBehaviour
                     }
                     yield return new WaitForSeconds(waveWait);
                     enemyWaveTime++;
+                    asteroidCount++;
                 }
                 else
                 {
@@ -70,6 +71,7 @@ public class GameController : MonoBehaviour
                         yield return new WaitForSeconds(spawnWaitEnemy);
                     }
                     enemyWaveTime = 0;
+                    enemyCount++;
                 }
             }
         }
