@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 262013995}
   - component: {fileID: 262013997}
   - component: {fileID: 262013998}
+  - component: {fileID: 262013999}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -363,7 +364,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf28458b844839449d1a8547b8fbbc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _poolInfos: {fileID: 0}
+  _poolController: {fileID: 262013999}
+--- !u!114 &262013999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262013994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4b8a57247459d4b94b59b77b9dcaa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolInfos: {fileID: 11400000, guid: efd669ead76f7a04086c27d946391309, type: 2}
 --- !u!1 &355268280
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 355268282}
   - component: {fileID: 355268281}
+  - component: {fileID: 355268283}
   m_Layer: 0
   m_Name: Signals
   m_TagString: Untagged
@@ -407,6 +422,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &355268283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355268280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb40486df0c50c42852d6af5e941d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &508532206
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,7 +1270,7 @@ MonoBehaviour:
   shotSpawn: {fileID: 1929601974}
   nextFire: 0
   fireRate: 0.35
-  tripleBulletAngel: 8
+  tripleBulletAngel: 15
 --- !u!114 &1414886623
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ namespace Assets.Scripts.Controllers
             {
                 PoolInfo poolInfo = _poolInfos.poolInfos[i];
                 _pools.Add(poolInfo.entityType, poolInfo);
-
+                poolInfo.poolQueue = new Queue<GameObject>();
                 FillThePool(poolInfo, poolInfo.startSize);
             }
         }
@@ -35,9 +35,10 @@ namespace Assets.Scripts.Controllers
                 FillThePool(poolInfo, poolInfo.increaseAmount);
             }
             GameObject takenEntity = poolInfo.poolQueue.Dequeue();
-            takenEntity.SetActive(true);
+            //takenEntity.SetActive(true);
             return takenEntity;
         }
+
         public void OnSetEntityToPool(EntityTypes entityType, GameObject gameObject)
         {
             PoolInfo poolInfo = _pools[entityType];
@@ -46,6 +47,7 @@ namespace Assets.Scripts.Controllers
 
         private static void SetObjectToPool(GameObject gameObject, PoolInfo poolInfo)
         {
+            gameObject.transform.position = Vector3.down * 10;
             gameObject.SetActive(false);
             poolInfo.poolQueue.Enqueue(gameObject);
         }
@@ -54,10 +56,9 @@ namespace Assets.Scripts.Controllers
         {
             for (int i = 0; i < amount; i++)
             {
-                GameObject newEntity = Instantiate(poolInfo.entityPrefab, Vector3.down * 10, Quaternion.identity);
+                GameObject newEntity = Instantiate(poolInfo.entityPrefab, Vector3.down * 10, Quaternion.Euler(Vector3.zero));
                 SetObjectToPool(newEntity, poolInfo);
             }
         }
-
     }
 }

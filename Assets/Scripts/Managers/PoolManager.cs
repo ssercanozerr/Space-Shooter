@@ -14,7 +14,7 @@ namespace Assets.Scripts.Managers
 
         void OnEnable()
         {
-            PoolSignals.Instance.onSetEntityToPool += _poolController.OnSetEntityToPool;
+            PoolSignals.Instance.onSetEntityToPool += _poolController.OnSetEntityToPool;            
             PoolSignals.Instance.onGetEntityFromPool += _poolController.OnGetEntityFromPool;
         }
         void OnDisable()

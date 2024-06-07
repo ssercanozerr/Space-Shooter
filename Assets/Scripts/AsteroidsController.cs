@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Signals;
+﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Signals;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class AsteroidsController : MonoBehaviour
     public GameObject explosionAsteroid;
     public GameObject explosionPlayer;
     public GameObject explosionEnemy;
+
     GameController gameController;
     void Start()
     {
@@ -27,22 +29,27 @@ public class AsteroidsController : MonoBehaviour
         {
             Instantiate(explosionAsteroid, transform.position, transform.rotation);
             gameController.UpdateScore(10);
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            PoolSignals.Instance.onSetEntityToPool.Invoke(EntityTypes.PlayerBolt, other.gameObject);
+            PoolSignals.Instance.onSetEntityToPool.Invoke(EntityTypes.Asteroid, gameObject);
+            //Destroy(other.gameObject);
+            //Destroy(gameObject);
         }
-        if(other.gameObject.tag == "PlayerShip")
+        if (other.gameObject.tag == "PlayerShip")
         {
             Instantiate(explosionPlayer, other.transform.position, other.transform.rotation);
             PlayerSignals.Instance.onResetBulletPowerUp?.Invoke();
             PlayerSignals.Instance.onDecreasePlayerHealth?.Invoke(10);
-            Destroy(gameObject);            
+            PoolSignals.Instance.onSetEntityToPool.Invoke(EntityTypes.Asteroid, gameObject);
+            //Destroy(gameObject);
         }
         if (other.gameObject.tag == "EnemyShip")
         {
             Instantiate(explosionEnemy, other.transform.position, other.transform.rotation);
             gameController.UpdateScore(20);
-            Destroy(other.gameObject);
-            Destroy(gameObject);
+            PoolSignals.Instance.onSetEntityToPool.Invoke(EntityTypes.EnemyShip, other.gameObject);
+            PoolSignals.Instance.onSetEntityToPool.Invoke(EntityTypes.Asteroid, gameObject);
+            //Destroy(other.gameObject);
+            //Destroy(gameObject);
         }
     }
 }

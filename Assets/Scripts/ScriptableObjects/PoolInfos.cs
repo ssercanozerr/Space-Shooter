@@ -12,7 +12,7 @@ namespace Assets.Scripts.ScriptableObjects
         public List<PoolInfo> poolInfos;  
     }
     [Serializable] 
-    public struct PoolInfo
+    public class PoolInfo
     {
         public EntityTypes entityType;
         public GameObject entityPrefab;

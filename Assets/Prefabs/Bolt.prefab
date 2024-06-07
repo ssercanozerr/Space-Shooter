@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8989485872013567215}
   - component: {fileID: 8989485872013567212}
   - component: {fileID: 8989485872013567213}
-  - component: {fileID: 8989485872013567214}
+  - component: {fileID: 7434819865006317143}
   m_Layer: 0
   m_Name: Bolt
   m_TagString: Bolt
@@ -64,7 +64,7 @@ CapsuleCollider:
   m_Height: 0.58
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8989485872013567214
+--- !u!114 &7434819865006317143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,11 +73,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8989485872013567200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e88ab91df718f94c932308eb17f0b72, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ec78133a75187a4e85b73d0d851d49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  _isPlayer: 1
+  speed: 7
   explosionPlayer: {fileID: 8804388198947870971, guid: a93496017806b7740910df5fd946f306,
     type: 3}
   explosionEnemy: {fileID: 8672883085318687673, guid: 384371afbb4354cc9a3fc68eab303756,

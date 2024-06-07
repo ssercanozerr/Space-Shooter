@@ -10,6 +10,7 @@ TagManager:
   - GameManager
   - EnemyShip
   - EnemyBolt
+  - Asteroid
   layers:
   - Default
   - TransparentFX

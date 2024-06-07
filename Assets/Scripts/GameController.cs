@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Signals;
+﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Signals;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,6 @@ public class GameController : MonoBehaviour
     public Text scoreTxt;
     public static int score;
 
-
     void Start()
     {
         score = 0;
@@ -34,13 +34,13 @@ public class GameController : MonoBehaviour
         bool isBulletBallSpawned = false;
         while (true)
         {
-            if (Random.value < 0.3f && !isHealthBallSpawned && !(bool)PlayerSignals.Instance.onIsHealthBarMax?.Invoke())
+            if (Random.value < 0.8f && !isHealthBallSpawned && !(bool)PlayerSignals.Instance.onIsHealthBarMax?.Invoke())
             {
                 isHealthBallSpawned = true;
                 Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
                 Instantiate(healBall, spawnLocation, Quaternion.identity);
             }
-            else if (Random.value < 0.4f && !isBulletBallSpawned && !(bool)PlayerSignals.Instance.onIsBulletLevelMax?.Invoke() && score >= 200)
+            else if (Random.value < 1f && !isBulletBallSpawned && !(bool)PlayerSignals.Instance.onIsBulletLevelMax?.Invoke() && score >= 20)
             {
                 isBulletBallSpawned = true;
                 Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
@@ -54,8 +54,7 @@ public class GameController : MonoBehaviour
                 {
                     for (int i = 0; i < asteroidCount; i++)
                     {
-                        Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
-                        Instantiate(asteroid, spawnLocation, Quaternion.identity);
+                        SpawnEntity(EntityTypes.Asteroid);
                         yield return new WaitForSeconds(spawnWaitAsteroid);
                     }
                     yield return new WaitForSeconds(waveWait);
@@ -66,8 +65,7 @@ public class GameController : MonoBehaviour
                 {
                     for (int i = 0; i < enemyCount; i++)
                     {
-                        Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
-                        Instantiate(enemyShip, spawnLocation, Quaternion.identity);
+                        SpawnEntity(EntityTypes.EnemyShip);
                         yield return new WaitForSeconds(spawnWaitEnemy);
                     }
                     enemyWaveTime = 0;
@@ -77,9 +75,20 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private static void SpawnEntity(EntityTypes entityTypes)
+    {
+        Vector3 spawnLocation = new Vector3(Random.Range(-3, 4), 0, 10);
+        GameObject newEntityObject = PoolSignals.Instance.onGetEntityFromPool?.Invoke(entityTypes);
+        newEntityObject.transform.position = spawnLocation;
+        newEntityObject.transform.rotation = Quaternion.identity;
+        newEntityObject.SetActive(true);
+    }
+
     public void UpdateScore(int point)
     {
         score += point;
         scoreTxt.text = "Score : " + score;
     }
+
+ 
 }

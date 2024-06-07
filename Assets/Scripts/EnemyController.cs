@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Signals;
+﻿using Assets.Scripts.Enums;
+using Assets.Scripts.Signals;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,9 +41,21 @@ public class EnemyController : MonoBehaviour
         if (Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
-            Instantiate(shot, shotSpawnLeft.transform.position, shotSpawnLeft.transform.rotation);
-            Instantiate(shot, shotSpawnRight.transform.position, shotSpawnRight.transform.rotation);
+            //Instantiate(shot, shotSpawnLeft.transform.position, shotSpawnLeft.transform.rotation);
+            //Instantiate(shot, shotSpawnRight.transform.position, shotSpawnRight.transform.rotation);
+
+            SpawnEnemyBolt(shotSpawnLeft.transform.position, shotSpawnLeft.transform.rotation);
+            SpawnEnemyBolt(shotSpawnRight.transform.position, shotSpawnRight.transform.rotation);
         }
+    }
+
+    private void SpawnEnemyBolt(Vector3 vector, Quaternion quaternion)
+    {
+        print(quaternion.eulerAngles);
+        GameObject newEnemyBolt = PoolSignals.Instance.onGetEntityFromPool.Invoke(EntityTypes.EnemyBolt);
+        newEnemyBolt.transform.position = vector;
+        newEnemyBolt.transform.rotation = Quaternion.Euler(quaternion.eulerAngles);
+        newEnemyBolt.SetActive(true);
     }
 
     void OnTriggerEnter(Collider other)
@@ -53,7 +66,7 @@ public class EnemyController : MonoBehaviour
             Instantiate(explosionEnemy, transform.position, transform.rotation);
             PlayerSignals.Instance.onDecreasePlayerHealth?.Invoke(50);
             PlayerSignals.Instance.onResetBulletPowerUp?.Invoke();
-            Destroy(gameObject);
+            PoolSignals.Instance.onSetEntityToPool.Invoke(EntityTypes.EnemyShip, gameObject);
         }
     }
 }
