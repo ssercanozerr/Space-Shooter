@@ -42,24 +42,15 @@ namespace Assets.Scripts.Controllers
 
             if (_powerUpLevel == 1)
             {
-                //Instantiate(shot, firePosition, Quaternion.Euler(fireRotation));
-
                 SpawnNewBolt(firePosition, Quaternion.Euler(fireRotation));
             }
             else if (_powerUpLevel == 2)
             {
-                //Instantiate(shot, new Vector3(firePosition.x + .1f, firePosition.y, firePosition.z), Quaternion.Euler(fireRotation));
-                //Instantiate(shot, new Vector3(firePosition.x - .1f, firePosition.y, firePosition.z), Quaternion.Euler(fireRotation));
-
                 SpawnNewBolt(new Vector3(firePosition.x + .1f, firePosition.y, firePosition.z), Quaternion.Euler(fireRotation));
                 SpawnNewBolt(new Vector3(firePosition.x - .1f, firePosition.y, firePosition.z), Quaternion.Euler(fireRotation));
             }
             else if (_powerUpLevel == 3)
             {
-                //Instantiate(shot, new Vector3(firePosition.x + .1f, firePosition.y, firePosition.z), Quaternion.Euler(new Vector3(fireRotation.x, fireRotation.y + tripleBulletAngel, fireRotation.z)));
-                //Instantiate(shot, new Vector3(firePosition.x, firePosition.y, firePosition.z), Quaternion.Euler(fireRotation));
-                //Instantiate(shot, new Vector3(firePosition.x - .1f, firePosition.y, firePosition.z), Quaternion.Euler(new Vector3(fireRotation.x, fireRotation.y - tripleBulletAngel, fireRotation.z)));
-
                 SpawnNewBolt(new Vector3(firePosition.x + .1f, firePosition.y, firePosition.z), Quaternion.Euler(new Vector3(fireRotation.x, fireRotation.y + tripleBulletAngel, fireRotation.z)));
                 SpawnNewBolt(new Vector3(firePosition.x, firePosition.y, firePosition.z), Quaternion.Euler(fireRotation));
                 SpawnNewBolt(new Vector3(firePosition.x - .1f, firePosition.y, firePosition.z), Quaternion.Euler(new Vector3(fireRotation.x, fireRotation.y - tripleBulletAngel, fireRotation.z)));

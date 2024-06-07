@@ -31,8 +31,6 @@ public class AsteroidsController : MonoBehaviour
             gameController.UpdateScore(10);
             PoolSignals.Instance.onSetEntityToPool.Invoke(EntityTypes.PlayerBolt, other.gameObject);
             PoolSignals.Instance.onSetEntityToPool.Invoke(EntityTypes.Asteroid, gameObject);
-            //Destroy(other.gameObject);
-            //Destroy(gameObject);
         }
         if (other.gameObject.tag == "PlayerShip")
         {
@@ -40,7 +38,6 @@ public class AsteroidsController : MonoBehaviour
             PlayerSignals.Instance.onResetBulletPowerUp?.Invoke();
             PlayerSignals.Instance.onDecreasePlayerHealth?.Invoke(10);
             PoolSignals.Instance.onSetEntityToPool.Invoke(EntityTypes.Asteroid, gameObject);
-            //Destroy(gameObject);
         }
         if (other.gameObject.tag == "EnemyShip")
         {
@@ -48,8 +45,6 @@ public class AsteroidsController : MonoBehaviour
             gameController.UpdateScore(20);
             PoolSignals.Instance.onSetEntityToPool.Invoke(EntityTypes.EnemyShip, other.gameObject);
             PoolSignals.Instance.onSetEntityToPool.Invoke(EntityTypes.Asteroid, gameObject);
-            //Destroy(other.gameObject);
-            //Destroy(gameObject);
         }
     }
 }
