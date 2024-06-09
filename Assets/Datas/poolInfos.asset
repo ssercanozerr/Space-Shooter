@@ -16,20 +16,20 @@ MonoBehaviour:
   - entityType: 0
     entityPrefab: {fileID: 3525131308151336192, guid: e66e7e3b7eff1384ab558d2d932ddcdb,
       type: 3}
-    startSize: 10
+    startSize: 20
     increaseAmount: 4
   - entityType: 1
     entityPrefab: {fileID: 8989485872013567200, guid: 0605eb33577578841ade145d48a0e497,
       type: 3}
-    startSize: 10
+    startSize: 20
     increaseAmount: 4
   - entityType: 2
     entityPrefab: {fileID: 7276459516625144859, guid: c475bdfe228d0e4418bcdde031c654a2,
       type: 3}
-    startSize: 4
+    startSize: 10
     increaseAmount: 2
   - entityType: 3
     entityPrefab: {fileID: 8016661191798856259, guid: 3eb345e99edce514489f99a55048d5a2,
       type: 3}
-    startSize: 16
+    startSize: 20
     increaseAmount: 4
