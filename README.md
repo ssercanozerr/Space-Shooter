@@ -18,13 +18,23 @@ An endless game where random asteroids appear in front of us, and we try to dest
 
 * Unity
 * C#
+* Asset Store
 
 ### Requirements
 
 ---
 
 * Unity
-  
+
+### Design Patterns
+
+---
+
+* Singleton
+* Observer
+* Object Pool
+* Scriptable Object
+
 ### Screenshots
 
 ---
